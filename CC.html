@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Computing Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #aacf3b;
+      --text: #0a0111;
+      --muted: #073586;
+      --accent: #421dd4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #ede7ff 0%,
+        #e6ebff 35%,
+        #dbeafe 70%,
+        #e0f2fe 100%
+    );
+    font-family: 'Inter', sans-serif;
+    }
+
+    .header {
+      padding: 2.5rem 3rem;
+      border-bottom: 1px solid #1f2933;
+      background: linear-gradient(135deg, #0ccaae, #94b1f3);
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      width: 130px;
+      height: 130px;
+    }
+
+    .title-text h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: var(--accent);
+    }
+
+    .title-text p {
+      margin-top: 0.4rem;
+      color: var(--muted);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      min-height: calc(100vh - 120px);
+    }
+
+    nav {
+      border-right: 1px solid #1f2933;
+      padding: 2rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    nav a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      padding: 2.5rem 3.5rem;
+      max-width: 1100px;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    section h2 {
+      color: var(--accent);
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card {
+    background: #aacf3b;
+    border-radius: 18px;
+    padding: 1.8rem;
+    transition:
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    background: #b6d94a; /* slightly lighter green */
+    }
+
+    .card-img {
+     width: 100%;
+    height: 300px;
+    object-fit: contain;
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    }
+
+    .card-img {
+    height: 120px;
+    object-fit: contain;
+    }
+
+    .cloud-logos {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .cloud-logo {
+        height: 32px;
+        width: auto;
+        filter: brightness(0.95);
+        }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .resp-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* critical */
+    font-size: 0.95rem;
+    }
+
+    .resp-table th,
+    .resp-table td {
+    border: 1px solid #96b2ce;
+    padding: 1rem;
+    white-space: normal;
+    word-break: normal;     /* prevents letter splitting */
+    overflow-wrap: normal;  /* prevents letter splitting */
+    line-height: 1.5;
+    }
+
+    .resp-table th {
+    background: #ccd2eb;
+    color: var(--accent);
+    font-weight: 600;
+    }
+
+    .resp-table th:first-child,
+    .resp-table td:first-child {
+    width: 32%;
+    text-align: left;
+    font-weight: 600;
+    }
+
+    .resp-table th:not(:first-child),
+        .resp-table td:not(:first-child) {
+        width: 22.5%;
+        text-align: center;
+        }
+    
+    .resp-table td {
+    background: #8097cd;
+    }
+
+    .resp-table tbody tr {
+    transition: background-color 0.4s ease;
+    }
+
+    .resp-table tbody tr:hover {
+    background-color: rgba(2, 6, 23, 0.06);
+    }
+
+    .card {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    .hero {
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #ede7ff 0%,
+        #e6ebff 35%,
+        #dbeafe 70%,
+        #e0f2fe 100%
+    );
+    background-size: 200% 200%;
+    animation: gradientMove 18s ease infinite;
+    }
+
+    @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+    }
+
+    footer {
+      border-top: 1px solid #1f2933;
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      nav { position: relative; height: auto; border-right: none; border-bottom: 1px solid #1f2933; }
+      .header-content { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-content">
+    <img src="AdroIT.jpeg" alt="AdroIT Logo" class="logo" />
+    <div class="title-text">
+      <h1>Cloud Computing</h1>
+      <p>All you need to know about Cloud Computing</p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <nav>
+    <a href="#iaas">Shared Responsibility Model</a>
+    <a href="#datacenter">Data Center</a>
+    <a href="#virtualization">Virtualization vs Containers</a>
+    <a href="#region">Region & Availability Zone</a>
+    <a href="#vm">VM vs Serverless</a>
+    <a href="#storage">Cloud Storage</a>
+    <a href="#cdn">CDN</a>
+  </nav>
+
+  <main>
+
+    <section id="iaas" class="hero">
+      <h2>Shared Responsibility Model</h2>
+      <div class="grid">
+        <div class="card">
+            <b>IaaS (Infrastructure as a Service)</b><br>
+            Provides on-demand, virtualized computing resources—such as servers, storage, and networking—over the internet on a pay-as-you-go basis.<br><br>
+            <div class="cloud-logos">
+                <img src="AWS.jpg" alt="AWS Logo" class="cloud-logo">
+                EC2<br>EBS<br>VPC<br>
+                <img src="Azure.jpg" alt="Azure Logo" class="cloud-logo">
+                Virtual Machines/<br>Virtual Network<br><br> 
+            </div>
+            <img src="IaaS.jpg" alt="IaaS Architecture" class="card-img">
+        </div>
+
+        <div class="card">
+            <b>PaaS: Platform as a Service</b><br>
+            Provides a complete, managed platform—hardware, software, and infrastructure—for developers to build, run, and manage applications over the internet without maintaining underlying servers.<br><br>
+            <div class="cloud-logos">
+                <img src="AWS.jpg" alt="AWS Logo" class="cloud-logo">
+                Elastic Beanstalk<br>
+                <img src="Azure.jpg" alt="Azure Logo" class="cloud-logo">
+                App Service 
+            </div>
+            <br><br><br> 
+            <img src="PaaS.jpg" alt="PaaS Architecture" class="card-img">
+        </div>
+
+        <div class="card">
+            <b>SaaS: Software as a Service</b>
+            <br>Hosted centrally by a provider and accessed by users over the internet, usually via a web browser, instead of being installed locally. Customers typically pay a recurring subscription fee, allowing them to access, maintain, and update applications,<br><br>
+            <div class="cloud-logos">
+                <img src="AWS.jpg" alt="AWS Logo" class="cloud-logo">
+                Amazon WorkDocs<br>
+                <img src="Azure.jpg" alt="Azure Logo" class="cloud-logo">
+                Microsoft 365
+            </div>
+            <br><br><br> 
+            <img src="SaaS.jpg" alt="SaaS Architecture" class="card-img">
+        </div>
+
+        <div class="card" style="margin-top:2rem">
+  <h3 class="table-title">Shared Responsibility Model</h3>
+
+    <div class="table-wrapper">
+        <table class="resp-table">
+        <thead>
+            <tr>
+            <th>Responsibility</th>
+            <th>IaaS</th>
+            <th>PaaS</th>
+            <th>SaaS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Physical Data Center</td>
+            <td>Cloud Provider</td>
+            <td>Cloud Provider</td>
+            <td>Cloud Provider</td>
+            </tr>
+            <tr>
+            <td>Networking & Storage</td>
+            <td>Cloud Provider</td>
+            <td>Cloud Provider</td>
+            <td>Cloud Provider</td>
+            </tr>
+            <tr>
+            <td>Operating System</td>
+            <td>Customer</td>
+            <td>Cloud Provider</td>
+            <td>Cloud Provider</td>
+            </tr>
+            <tr>
+            <td>Runtime & Middleware</td>
+            <td>Customer</td>
+            <td>Cloud Provider</td>
+            <td>Cloud Provider</td>
+            </tr>
+            <tr>
+            <td>Application</td>
+            <td>Customer</td>
+            <td>Customer</td>
+            <td>Cloud Provider</td>
+            </tr>
+            <tr>
+            <td>Data</td>
+            <td>Customer</td>
+            <td>Customer</td>
+            <td>Customer</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+    </section>
+
+    <section id="datacenter">
+      <h2>Data Center</h2>
+      <div class="card">
+        A data center is a physical room, building or facility that houses IT infrastructure for building, running and delivering applications and services. It also stores and manages the data associated with those applications and services.
+        <br><br>
+        Data centers started out as privately owned, tightly controlled on-premises facilities housing traditional IT infrastructure for the exclusive use of one company. Recently, they've evolved into remote facilities or networks of facilities owned by cloud service providers (CSPs). These CSP data centers house virtualized IT infrastructure for the shared use of multiple companies and customers.
+    <br>
+    <img src="Data Center.jpg" alt="Data Center" class="card-img">  
+    </div>
+    </section>
+
+    <section id="virtualization">
+      <h2>Virtualization vs Containers</h2>
+      <div class="grid">
+        <div class="card"><b>Virtualization</b><br>Runs multiple virtual machines on one physical server. Each VM has its own OS.<br><br><b>AWS:</b> EC2 (Hypervisor-based)<br><b>Azure:</b> Azure Virtual Machines</div>
+        <div class="card"><b>Containers</b><br>Share the host OS kernel. Lightweight and faster than VMs.<br><br><b>AWS:</b> ECS, EKS<br><b>Azure:</b> Azure Kubernetes Service (AKS)</div>
+      </div>
+    </section>
+
+    <section id="region">
+      <h2>Region & Availability Zone</h2>
+      <div class="card">
+        <b>Region:</b> A geographic location where cloud resources are hosted.<br><br>
+        <b>AWS Example:</b> Asia South (Mumbai)<br>
+        <b>Azure Example:</b> Central India<br><br>
+        <b>Availability Zone:</b> Isolated data centers within a region used for fault tolerance and high availability.
+      </div>
+    </section>
+
+    <section id="vm">
+      <h2>VM vs Serverless</h2>
+      <div class="grid">
+        <div class="card"><b>Virtual Machines</b><br>Always running. You manage OS and scaling.<br><br><b>AWS:</b> EC2<br><b>Azure:</b> Azure Virtual Machines</div>
+        <div class="card"><b>Serverless</b><br>No server management. Pay only when code runs.<br><br><b>AWS:</b> Lambda<br><b>Azure:</b> Azure Functions</div>
+      </div>
+    </section>
+
+    <section id="storage">
+      <h2>Cloud Storage</h2>
+      <div class="card">
+        Cloud storage allows data to be stored and accessed over the internet. It is highly durable, scalable, and cost-effective.<br><br>
+        <b>AWS:</b> Amazon S3 (Object), EBS (Block), EFS (File)<br>
+        <b>Azure:</b> Blob Storage, Disk Storage, Azure Files
+      </div>
+    </section>
+
+    <section id="cdn">
+      <h2>Content Delivery Network (CDN)</h2>
+      <div class="card">
+        A CDN is a network of globally distributed servers that cache content closer to users, reducing latency and improving performance.<br><br>
+        <b>AWS:</b> CloudFront<br>
+        <b>Azure:</b> Azure CDN
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Built as a static frontend documentation site • Deployable on GitHub Pages / Netlify / Vercel
+</footer>
+
+</body>
+</html>
